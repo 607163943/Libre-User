@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 修复ant-design图标垂直对齐问题 */
+.anticon {
+  vertical-align: 0.0875rem;
+}
