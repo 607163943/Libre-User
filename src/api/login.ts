@@ -6,3 +6,12 @@ import type { UserInfo } from '@/types/user'
 export const login = (data: LoginForm) => {
   return request.post<Result<UserInfo>>('/login', data)
 }
+
+//
+
+/**
+ * 用户登出
+ */
+export const logout = () => {
+  return request.post<Result<void>>('/logout')
+}

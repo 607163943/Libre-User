@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons-vue'
 import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
+import { logout } from '@/api/login'
 
 defineOptions({
   name: 'LayoutMenu'
@@ -28,8 +29,12 @@ const onMenuClick = ({ key }: { key: string }) => {
   if (key === 'profile') {
     router.push({ name: 'Profile' })
   } else if (key === 'logout') {
-    userStore.setUserInfo(null)
-    router.push({ name: 'Login' })
+    logout()
+      .then(() => {
+        userStore.setUserInfo(null)
+        router.push({ name: 'Login' })
+      })
+      .catch((error) => console.log(error))
   }
 }
 </script>
