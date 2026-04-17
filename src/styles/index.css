@@ -6,3 +6,13 @@
 .anticon {
   vertical-align: 0.0875rem;
 }
+
+@layer components {
+  .text-warning {
+    --tw-text-opacity: 1;
+    color: rgb(212 107 86 / var(--tw-text-opacity, 1));
+  }
+  .border-warning {
+    border-color: rgb(212 107 86 / var(--tw-border-opacity, 1));
+  }
+}
