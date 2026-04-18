@@ -71,17 +71,27 @@ const onMenuClick = ({ key }: { key: string }) => {
 
       <!-- 右侧：通知 / 设置 + 用户区域 -->
       <div class="flex items-center gap-4">
-        <!-- 工具按钮 -->
-        <div class="flex items-center gap-1">
-          <a-badge :count="0" dot>
+        <a-config-provider
+          :theme="{
+            components: {
+              Button: {
+                fontSize: 14
+              }
+            }
+          }"
+        >
+          <!-- 工具按钮 -->
+          <div class="flex items-center">
+            <a-badge :count="0" dot>
+              <a-button type="text" class="flex items-center justify-center">
+                <template #icon><MessageOutlined /></template>
+              </a-button>
+            </a-badge>
             <a-button type="text" class="flex items-center justify-center">
-              <template #icon><MessageOutlined /></template>
+              <template #icon><SettingOutlined /></template>
             </a-button>
-          </a-badge>
-          <a-button type="text" class="flex items-center justify-center">
-            <template #icon><SettingOutlined /></template>
-          </a-button>
-        </div>
+          </div>
+        </a-config-provider>
 
         <!-- ===== 已登录：头像 + 姓名 + 下拉菜单 ===== -->
         <template v-if="userStore.userInfo">

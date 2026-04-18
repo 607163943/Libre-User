@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import type { LendDataCount, MyLendTableData, SearchLendForm } from '@/types/lend'
-import { getLendDataCount, pageQueryLendList, renewBook } from '@/api/lend'
+import { getLendDataCount, pageQueryLendList, renewBook, returnBook } from '@/api/lend'
 import dayjs from 'dayjs'
 import { message } from 'ant-design-vue'
 
@@ -82,12 +82,8 @@ const handleTimeStats = (book: MyLendTableData) => {
 
   // 总借阅时长 (天)
   const totalDuration = end.diff(start, 'day')
-  console.log(start)
-  console.log(totalDuration)
   // 距离到期剩余时长 (天)
   const remaining = end.diff(now, 'day')
-  console.log(now)
-  console.log(remaining)
 
   // 计算百分比：(剩余天数 / 总天数) * 100
   // 如果剩余天数为负，说明已逾期，百分比设为 0
@@ -120,6 +116,20 @@ const handleRenew = (bookId: number) => {
   renewBook(bookId)
     .then(() => {
       message.success('续借成功')
+      // 继续获取旧搜索条件下的数据
+      searchLendForm.value = { ...usingSearchLendForm.value }
+      handleSearch()
+    })
+    .catch((error) => console.log(error))
+}
+
+/**
+ * 归还图书
+ */
+const handleReturn = (bookId: number) => {
+  returnBook(bookId)
+    .then(() => {
+      message.success('归还成功')
       // 继续获取旧搜索条件下的数据
       searchLendForm.value = { ...usingSearchLendForm.value }
       handleSearch()
@@ -240,9 +250,11 @@ const handleRenew = (bookId: number) => {
               {{ book.bookName }}
             </h3>
             <p class="text-sm text-on-surface-variant mb-2">
-              by {{ book.authorName }} •
+              作者: {{ book.authorName }} •
               <span class="font-mono text-xs">ISBN: {{ book.isbn }}</span>
             </p>
+            <!-- 出版社 -->
+            <p class="text-sm text-on-surface-variant mb-2">出版社: {{ book.publisherName }}</p>
           </div>
 
           <div class="flex flex-col justify-center">
@@ -298,6 +310,14 @@ const handleRenew = (bookId: number) => {
 
         <a-config-provider :theme="{ token: { colorPrimary: '#005daa', borderRadius: 4 } }">
           <div class="flex flex-row md:flex-col gap-2 w-full md:w-auto">
+            <a-button
+              type="primary"
+              size="middle"
+              class="font-semibold shadow-none border-0 px-8"
+              @click="() => handleReturn(book.id)"
+            >
+              归还
+            </a-button>
             <a-button
               type="primary"
               size="middle"

@@ -1,5 +1,8 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { useUserStore } from '@/stores/user'
+import router from '@/router'
+import { message } from 'ant-design-vue'
+import type { Result } from '@/types/common'
 
 const instance = axios.create({
   baseURL: '/api',
@@ -29,9 +32,26 @@ instance.interceptors.response.use(
     // 对响应数据做点什么
     return response
   },
-  function (error) {
+  function (error: AxiosError<Result<object>>) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
+    const res = error.response
+    // 认证失败
+    if (res?.status === 401) {
+      const userStore = useUserStore()
+      userStore.setUserInfo(null)
+      router.push({ name: 'Login' })
+      message.error('登录已过期，请重新登录')
+    }
+
+    // 走后端接口的错误响应
+    if (res?.data?.msg) {
+      message.error(res.data.msg)
+    } else {
+      // 未知错误响应
+      message.error('操作失败，请联系管理员！')
+    }
+
     return Promise.reject(error)
   }
 )

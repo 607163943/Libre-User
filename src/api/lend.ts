@@ -1,6 +1,12 @@
 import request from '@/utils/request'
 import type { Result, PageResult } from '@/types/common'
-import type { LendDataCount, MyLendTableData, SearchLendForm } from '@/types/lend'
+import type {
+  LendDataCount,
+  LendHistoryDataCount,
+  MyLendTableData,
+  SearchLendForm,
+  MyLendHistoryTableData
+} from '@/types/lend'
 
 /**
  * 借阅图书
@@ -37,4 +43,20 @@ export const pageQueryLendList = (params: SearchLendForm) => {
  */
 export const renewBook = (bookId: number) => {
   return request.patch<Result<void>>(`/lend/renew/${bookId}`)
+}
+
+/**
+ * 获取历史借阅统计信息
+ */
+export const getLendHistoryDataCount = () => {
+  return request.get<Result<LendHistoryDataCount>>('/lend/my-lend/history/data')
+}
+
+/**
+ * 获取历史借阅记录
+ */
+export const pageQueryLendHistoryList = (params: SearchLendForm) => {
+  return request.get<Result<PageResult<MyLendHistoryTableData[]>>>('/lend/my-lend/history', {
+    params
+  })
 }

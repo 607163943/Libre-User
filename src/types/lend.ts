@@ -6,6 +6,11 @@ export interface LendDataCount {
   soonOverdueLendCount: number
 }
 
+export interface LendHistoryDataCount {
+  lendCount: number
+  overdueLendCount: number
+}
+
 export interface SearchLendForm extends PageForm {
   keyword: string
   startDate: string
@@ -17,14 +22,26 @@ export interface MyLendTableData {
   bookName: string
   bookUrl: string
   authorName: string
+  publisherName: string
   isbn: string
   lendTime: string
   dueTime: string
-  status: string
 
   // UI计算数据
   remaining: number
   isOverdue: boolean
   isCritical: boolean
   percent: number
+}
+
+export interface MyLendHistoryTableData {
+  id: number
+  bookName: string
+  bookUrl: string
+  authorName: string
+  publisherName: string
+  isbn: string
+  lendTime: string
+  returnTime: string
+  state: number
 }
