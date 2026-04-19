@@ -6,6 +6,7 @@ import type { LoginForm } from '@/types/login'
 import { login } from '@/api/login'
 import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
+import { generateMD5 } from '@/utils/security-utils'
 
 // 定义表单数据结构
 const loginForm = ref<LoginForm>({
@@ -29,7 +30,10 @@ const handleLogin = async () => {
 
   loading.value = true
 
-  login(loginForm.value)
+  // 密码md5加密
+  const tempLoginForm = { ...loginForm.value }
+  tempLoginForm.password = generateMD5(tempLoginForm.password)
+  login(tempLoginForm)
     .then((res) => {
       userStore.setUserInfo(res.data.data)
       message.success('登录成功')

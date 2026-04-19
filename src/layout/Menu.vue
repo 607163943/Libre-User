@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import {
   MessageOutlined,
   SettingOutlined,
@@ -18,6 +19,13 @@ defineOptions({
 
 const userStore = useUserStore()
 const router = useRouter()
+const route = useRoute()
+
+/** 导航链接激活样式 */
+const navClass = (routeName: string) =>
+  route.name === routeName
+    ? 'text-blue-600 border-b-2 border-blue-600 font-semibold px-1 py-4 text-sm'
+    : 'text-slate-600 hover:text-blue-500 transition-colors px-1 py-4 text-sm'
 
 /** 用户名首字母，用于头像占位 */
 const avatarChar = computed<string>(() => {
@@ -52,17 +60,17 @@ const onMenuClick = ({ key }: { key: string }) => {
 
         <div class="hidden md:flex gap-6">
           <RouterLink
-            class="text-blue-600 border-b-2 border-blue-600 font-semibold px-1 py-4 text-sm"
+            :class="navClass('Home')"
             :to="{ name: 'Home' }"
             >首页</RouterLink
           >
           <RouterLink
-            class="text-slate-600 hover:text-blue-500 transition-colors px-1 py-4 text-sm"
+            :class="navClass('Search')"
             :to="{ name: 'Search' }"
             >检索</RouterLink
           >
           <RouterLink
-            class="text-slate-600 hover:text-blue-500 transition-colors px-1 py-4 text-sm"
+            :class="navClass('MyLend')"
             :to="{ name: 'MyLend' }"
             >我的借阅</RouterLink
           >

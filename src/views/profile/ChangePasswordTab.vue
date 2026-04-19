@@ -6,6 +6,7 @@ import { message } from 'ant-design-vue'
 import { LockOutlined, UnlockOutlined, SecurityScanOutlined } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import { generateMD5 } from '@/utils/security-utils'
 
 const passwordForm = ref({
   oldPassword: '',
@@ -29,8 +30,8 @@ const userStore = useUserStore()
 // 修改密码
 const handlePasswordReset = () => {
   const submitForm: UserPasswordSubmit = {
-    oldPassword: passwordForm.value.oldPassword,
-    newPassword: passwordForm.value.newPassword
+    oldPassword: generateMD5(passwordForm.value.oldPassword),
+    newPassword: generateMD5(passwordForm.value.newPassword)
   }
   updateUserPassword(submitForm)
     .then(() => {

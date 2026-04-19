@@ -11,6 +11,7 @@ import type { RegisterForm, RegisterSubmitForm } from '@/types/register'
 import { register } from '@/api/register'
 import { useRouter } from 'vue-router'
 import type { Rule } from 'ant-design-vue/es/form'
+import { generateMD5 } from '@/utils/security-utils'
 
 // 表单数据模型
 const registerForm = ref<RegisterForm>({
@@ -46,7 +47,7 @@ const handleRegister = () => {
   loading.value = true
   const tempForm: RegisterSubmitForm = {
     username: registerForm.value.username,
-    password: registerForm.value.password
+    password: generateMD5(registerForm.value.password)
   }
   register(tempForm)
     .then(() => {
