@@ -49,24 +49,4 @@ const activeTab = ref<TabType>('current')
   </main>
 </template>
 
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
-
-/* 图标设定 */
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
-}
-
-/* 字体设定 */
-.font-body {
-  font-family: 'Inter', sans-serif;
-}
-.font-headline {
-  font-family: 'Manrope', sans-serif;
-}
-</style>
+<style scoped></style>

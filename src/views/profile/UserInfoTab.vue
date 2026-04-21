@@ -4,13 +4,7 @@ import type { UserProfileInfo, UserInfo } from '@/types/user'
 import { getUserProfile, updateUserProfile } from '@/api/user'
 import { message } from 'ant-design-vue'
 import { useUserStore } from '@/stores/user'
-
-// 定义表单数据
-const formState = ref<UserProfileInfo>({
-  name: '张三',
-  email: 'zhangsan@libre.org',
-  phone: '+86 138 0000 0000'
-})
+import type { Rule } from 'ant-design-vue/es/form'
 
 // 主题配置，局部修改输入框和按钮的样式以贴近原设计方案
 const themeConfig = {
@@ -21,6 +15,18 @@ const themeConfig = {
     colorBorder: 'transparent',
     controlHeight: 44 // 增加高度以贴近原设计的 py-3
   }
+}
+
+// 定义表单数据
+const formState = ref<UserProfileInfo>({
+  name: '张三',
+  email: 'zhangsan@libre.org',
+  phone: '+86 138 0000 0000'
+})
+
+// 表单校验规则
+const rules: Record<string, Rule[]> = {
+  name: [{ required: true, message: '请输入用户名', trigger: 'change' }]
 }
 
 // 保存个人信息
@@ -63,7 +69,13 @@ onMounted(() => {
     </div>
 
     <a-config-provider :theme="themeConfig">
-      <a-form layout="vertical" class="max-w-2xl space-y-6" :model="formState" @finish="handleSave">
+      <a-form
+        layout="vertical"
+        :rules="rules"
+        class="max-w-2xl space-y-6"
+        :model="formState"
+        @finish="handleSave"
+      >
         <div class="flex items-center gap-8 py-4">
           <div class="relative group">
             <img

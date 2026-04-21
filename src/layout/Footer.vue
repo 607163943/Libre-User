@@ -7,13 +7,11 @@ defineOptions({
   <footer class="bg-slate-50 py-12 mt-auto">
     <div class="flex flex-col items-center gap-4 w-full border-t border-slate-200 pt-8">
       <div class="flex gap-8 text-xs font-inter uppercase tracking-wider">
-        <a class="text-slate-500 hover:text-blue-500" href="#">About</a>
-        <a class="text-slate-500 hover:text-blue-500" href="#">Privacy Policy</a>
-        <a class="text-slate-500 hover:text-blue-500" href="#">Contact Support</a>
+        <span class="text-slate-500">关于</span>
+        <span class="text-slate-500">隐私政策</span>
+        <span class="text-slate-500">联系支持</span>
       </div>
-      <p class="text-xs font-inter uppercase tracking-wider text-slate-500">
-        © 2026 Libre Library Management System | 毕业设计项目
-      </p>
+      <p class="text-xs font-inter uppercase tracking-wider text-slate-500">© 2026 Libre</p>
     </div>
   </footer>
 </template>

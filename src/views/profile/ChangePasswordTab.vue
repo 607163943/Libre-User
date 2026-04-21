@@ -7,6 +7,7 @@ import { LockOutlined, UnlockOutlined, SecurityScanOutlined } from '@ant-design/
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { generateMD5 } from '@/utils/security-utils'
+import type { Rule } from 'ant-design-vue/es/form'
 
 const passwordForm = ref({
   oldPassword: '',
@@ -27,6 +28,23 @@ const passwordTheme = {
 
 const router = useRouter()
 const userStore = useUserStore()
+
+// 表单检验规则
+const rules: Record<string, Rule[]> = {
+  oldPassword: [{ required: true, message: '请输入旧密码', trigger: 'change' }],
+  newPassword: [{ required: true, message: '请输入新密码', trigger: 'change' }],
+  confirmPassword: [
+    { required: true, message: '请再次输入新密码', trigger: 'change' },
+    {
+      validator: (_rule: Rule, value: string) => {
+        if (value !== passwordForm.value.newPassword) {
+          throw new Error('两次输入的密码不一致')
+        }
+      },
+      trigger: 'change'
+    }
+  ]
+}
 // 修改密码
 const handlePasswordReset = () => {
   const submitForm: UserPasswordSubmit = {
@@ -54,6 +72,7 @@ const handlePasswordReset = () => {
     <a-config-provider :theme="passwordTheme">
       <a-form
         :model="passwordForm"
+        :rules="rules"
         layout="vertical"
         class="max-w-md space-y-6"
         @finish="handlePasswordReset"
