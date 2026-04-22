@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import MyLendTab from './MyLendTab.vue'
+import MyLendTab from './my-lend/MyLendTab.vue'
 import MyLendHistoryTab from './MyLendHistoryTab.vue'
 
 type TabType = 'current' | 'history'

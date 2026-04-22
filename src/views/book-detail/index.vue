@@ -185,19 +185,4 @@ const handleReturn = () => {
   </main>
 </template>
 
-<style scoped>
-/* 使用 Tailwind CSS，CSS 中主要定义字体回退和特定动画 */
-:deep(.ant-btn-primary) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.font-headline {
-  font-family: 'Manrope', sans-serif;
-}
-
-.font-body {
-  font-family: 'Inter', sans-serif;
-}
-</style>
+<style scoped></style>

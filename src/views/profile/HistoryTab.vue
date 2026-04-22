@@ -71,6 +71,7 @@ const handleLendBook = (bookId: number) => {
     .then(() => {
       message.success('借阅成功')
       handlePageQuery()
+      handleLendDataCount()
     })
     .catch((error) => console.log(error))
 }
@@ -81,6 +82,7 @@ const handleReturnBook = (bookId: number) => {
     .then(() => {
       message.success('归还成功')
       handlePageQuery()
+      handleLendDataCount()
     })
     .catch((error) => console.log(error))
 }
