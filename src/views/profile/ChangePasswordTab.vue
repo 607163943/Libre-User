@@ -8,6 +8,7 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { generateMD5 } from '@/utils/security-utils'
 import type { Rule } from 'ant-design-vue/es/form'
+import Input from '@/components/Input.vue'
 
 const passwordForm = ref({
   oldPassword: '',
@@ -82,11 +83,12 @@ const handlePasswordReset = () => {
           name="oldPassword"
           class="font-semibold text-on-surface-variant tracking-wide !mb-0"
         >
-          <a-input-password v-model:value="passwordForm.oldPassword" placeholder="请输入旧密码">
-            <template #prefix>
-              <UnlockOutlined />
-            </template>
-          </a-input-password>
+          <Input
+            :type="'password'"
+            :pre-icon="UnlockOutlined"
+            v-model:inputValue="passwordForm.oldPassword"
+            placeholder="请输入旧密码"
+          />
         </a-form-item>
 
         <a-form-item
@@ -94,11 +96,12 @@ const handlePasswordReset = () => {
           name="newPassword"
           class="font-semibold text-on-surface-variant tracking-wide !mb-0"
         >
-          <a-input-password v-model:value="passwordForm.newPassword" placeholder="请输入新密码">
-            <template #prefix>
-              <LockOutlined />
-            </template>
-          </a-input-password>
+          <Input
+            v-model:inputValue="passwordForm.newPassword"
+            type="password"
+            :pre-icon="LockOutlined"
+            placeholder="请输入新密码"
+          />
         </a-form-item>
 
         <a-form-item
@@ -106,14 +109,12 @@ const handlePasswordReset = () => {
           name="confirmPassword"
           class="font-semibold text-on-surface-variant tracking-wide !mb-0"
         >
-          <a-input-password
-            v-model:value="passwordForm.confirmPassword"
+          <Input
+            v-model:inputValue="passwordForm.confirmPassword"
+            type="password"
+            :pre-icon="SecurityScanOutlined"
             placeholder="请再次输入新密码"
-          >
-            <template #prefix>
-              <SecurityScanOutlined />
-            </template>
-          </a-input-password>
+          />
         </a-form-item>
 
         <div class="pt-4 flex flex-col sm:flex-row items-center gap-6">

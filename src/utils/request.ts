@@ -5,7 +5,7 @@ import { message } from 'ant-design-vue'
 import type { Result } from '@/types/common'
 
 const instance = axios.create({
-  baseURL: '/api',
+  baseURL: '/api/user',
   timeout: 10000
 })
 

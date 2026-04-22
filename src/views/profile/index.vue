@@ -80,21 +80,4 @@ const handleLogout = () => {
   </main>
 </template>
 
-<style>
-/* 全局需要的字体和图标基础样式 */
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
-  display: inline-block;
-  vertical-align: middle;
-}
-.font-headline {
-  font-family: 'Manrope', sans-serif;
-}
-.font-body {
-  font-family: 'Inter', sans-serif;
-}
-</style>
+<style></style>

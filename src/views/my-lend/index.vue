@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import MyLendTab from './my-lend/MyLendTab.vue'
-import MyLendHistoryTab from './MyLendHistoryTab.vue'
+import MyLendTab from './my-lend-tab/index.vue'
+import HistoryTab from './history-tab/index.vue'
 
 type TabType = 'current' | 'history'
 
@@ -45,7 +45,7 @@ const activeTab = ref<TabType>('current')
     </div>
     <MyLendTab v-if="activeTab === 'current'" />
 
-    <MyLendHistoryTab v-else-if="activeTab === 'history'" />
+    <HistoryTab v-else-if="activeTab === 'history'" />
   </main>
 </template>
 

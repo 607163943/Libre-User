@@ -85,6 +85,7 @@ const handleRegister = () => {
               :icon="UserOutlined"
               placeholder="请输入用户名"
               autocomplete="username"
+              :size="'large'"
             />
           </a-form-item>
 
@@ -100,6 +101,7 @@ const handleRegister = () => {
               placeholder="请输入密码"
               :type="'password'"
               autocomplete="new-password"
+              :size="'large'"
             />
           </a-form-item>
 
@@ -115,6 +117,7 @@ const handleRegister = () => {
               placeholder="确认密码"
               :type="'password'"
               autocomplete="new-password"
+              :size="'large'"
             />
           </a-form-item>
         </template>

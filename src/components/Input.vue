@@ -3,11 +3,12 @@ import type { Component } from 'vue'
 defineOptions({
   name: 'CommonInput'
 })
-const { placeholder, autocomplete, preIcon, type } = defineProps<{
+const { placeholder, autocomplete, preIcon, type, size } = defineProps<{
   placeholder: string
   autocomplete?: string
   type?: 'text' | 'password'
   preIcon?: Component
+  size?: 'large' | 'default' | 'small'
 }>()
 
 const inputValue = defineModel<string>('inputValue')
@@ -17,7 +18,7 @@ const inputValue = defineModel<string>('inputValue')
     <a-input-password
       v-model:value="inputValue"
       :placeholder="placeholder"
-      size="large"
+      :size="size || 'default'"
       class="!rounded-xl"
       :autocomplete="autocomplete"
     >
@@ -30,7 +31,7 @@ const inputValue = defineModel<string>('inputValue')
     <a-input
       v-model:value="inputValue"
       :placeholder="placeholder"
-      size="large"
+      :size="size || 'default'"
       class="!rounded-xl"
       :autocomplete="autocomplete"
     >

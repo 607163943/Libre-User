@@ -101,7 +101,6 @@ const getUIConfig = (book: MyLendTableData) => {
       <div class="flex flex-row md:flex-col gap-2 w-full md:w-auto">
         <a-button
           type="primary"
-          size="middle"
           class="font-semibold shadow-none border-0 px-8"
           @click="() => handleReturn(book.id)"
         >
@@ -109,14 +108,12 @@ const getUIConfig = (book: MyLendTableData) => {
         </a-button>
         <a-button
           type="primary"
-          size="middle"
           class="font-semibold shadow-none border-0 px-8"
           @click="() => handleRenew(book.id)"
         >
           续借
         </a-button>
         <a-button
-          size="middle"
           class="font-semibold bg-surface-container-high text-on-surface border-0 hover:bg-surface-variant"
           @click="() => $router.push({ name: 'BookDetail', params: { id: book.id } })"
           >查看详情</a-button

@@ -4,8 +4,9 @@ import type { MyLendTableData, SearchLendForm, LendDataCount } from '@/types/len
 import { pageQueryLendList, getLendDataCount } from '@/api/lend'
 import dayjs from 'dayjs'
 import MyLendStats from './MyLendStats.vue'
-import FilterBar from './FilterBar.vue'
+import FilterBar from '../FilterBar.vue'
 import MyLendList from './MyLendList.vue'
+import MyLendPage from '../ListPage.vue'
 // 我的借阅统计
 const currentStats = ref<LendDataCount>({
   currentLendCount: 0,
@@ -73,10 +74,6 @@ onMounted(() => {
   handleSearch()
 })
 
-const handlePageChange = () => {
-  handleSearch()
-}
-
 /**
  * 核心逻辑计算：天数与百分比
  */
@@ -102,7 +99,7 @@ const handleTimeStats = (book: MyLendTableData) => {
 }
 </script>
 <template>
-  <div class="space-y-8">
+  <div class="space-y-8 animate-fade-in">
     <!-- 我的借阅统计卡片 -->
     <MyLendStats :currentStats="currentStats" />
 
@@ -119,16 +116,24 @@ const handleTimeStats = (book: MyLendTableData) => {
         :usingSearchLendForm="usingSearchLendForm"
         @bookStatsChange="handleBookStatsChange"
       />
-      <div class="flex items-center justify-center pt-8">
-        <a-config-provider :theme="{ token: { colorPrimary: '#005daa', borderRadius: 4 } }">
-          <a-pagination
-            v-model:current="searchLendForm.page"
-            :total="total"
-            show-less-items
-            @change="handlePageChange"
-          />
-        </a-config-provider>
-      </div>
+
+      <MyLendPage :pageForm="searchLendForm" :total="total" @pageChange="() => handleSearch()" />
     </div>
   </div>
 </template>
+
+<style scoped>
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>

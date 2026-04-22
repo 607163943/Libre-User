@@ -71,6 +71,7 @@ const handleLogin = async () => {
               placeholder="请输入用户名"
               autocomplete="username"
               :preIcon="UserOutlined"
+              :size="'large'"
             />
           </a-form-item>
 
@@ -81,6 +82,7 @@ const handleLogin = async () => {
               autocomplete="current-password"
               :preIcon="LockOutlined"
               type="password"
+              :size="'large'"
             />
           </a-form-item>
         </template>
