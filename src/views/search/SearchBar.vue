@@ -31,7 +31,7 @@ const handleSearch = () => {
             colorPrimary: '#005daa',
             borderRadius: 8,
             controlHeightLarge: 48,
-            colorBgContainer: '#eceef1', // surface-container
+            colorBgContainer: '#eceef1',
             colorBorder: 'transparent'
           },
           components: {
@@ -40,55 +40,60 @@ const handleSearch = () => {
               fontSize: 20
             },
             Select: {
-              colorBgContainer: '#f2f4f7' // surface-container-low
+              colorBgContainer: '#f2f4f7'
             }
           }
         }"
       >
-        <div
-          class="bg-surface-container-lowest rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4 items-center"
-        >
-          <div class="relative w-full md:flex-grow">
-            <a-input-search
-              v-model:value="searchForm.keyword"
-              placeholder="输入书名、作者、出版社或ISBN"
-              enter-button
-              @search="handleSearch"
-            >
-            </a-input-search>
+        <a-app>
+          <div
+            class="bg-surface-container-lowest rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4 items-center"
+          >
+            <div class="relative w-full md:flex-grow">
+              <a-input-search
+                v-model:value="searchForm.keyword"
+                placeholder="输入书名、作者、出版社或ISBN"
+                enter-button
+                @search="handleSearch"
+              >
+              </a-input-search>
 
-            <div class="mt-2">
-              <p class="text-on-surface-variant text-sm" v-if="isSearch && usingSearchForm.keyword">
-                找到 {{ total }} 条关于 "{{ usingSearchForm.keyword }}" 的结果
-              </p>
+              <div class="mt-2">
+                <p
+                  class="text-on-surface-variant text-sm"
+                  v-if="isSearch && usingSearchForm.keyword"
+                >
+                  找到 {{ total }} 条关于 "{{ usingSearchForm.keyword }}" 的结果
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-2 w-full md:w-auto mt-2">
+              <a-select
+                v-model:value="searchForm.isDateSort"
+                class="min-w-[140px] flex-grow"
+                placeholder="排序规则"
+                @change="handleSearch"
+              >
+                <a-select-option :value="0">按相关性排序</a-select-option>
+                <a-select-option :value="1">按时间排序</a-select-option>
+              </a-select>
+
+              <!-- 仅登录后显示该排序规则 -->
+              <a-select
+                v-model:value="searchForm.state"
+                class="min-w-[140px] flex-grow"
+                v-if="userStore.userInfo"
+                @change="handleSearch"
+                placeholder="指定借阅状态"
+              >
+                <a-select-option :value="null">所有书籍</a-select-option>
+                <a-select-option :value="1">借阅书籍</a-select-option>
+                <a-select-option :value="3">逾期书籍</a-select-option>
+              </a-select>
             </div>
           </div>
-
-          <div class="flex gap-2 w-full md:w-auto mt-2">
-            <a-select
-              v-model:value="searchForm.isDateSort"
-              class="min-w-[140px] flex-grow"
-              placeholder="排序规则"
-              @change="handleSearch"
-            >
-              <a-select-option :value="0">按相关性排序</a-select-option>
-              <a-select-option :value="1">按时间排序</a-select-option>
-            </a-select>
-
-            <!-- 仅登录后显示该排序规则 -->
-            <a-select
-              v-model:value="searchForm.state"
-              class="min-w-[140px] flex-grow"
-              v-if="userStore.userInfo"
-              @change="handleSearch"
-              placeholder="指定借阅状态"
-            >
-              <a-select-option :value="null">所有书籍</a-select-option>
-              <a-select-option :value="1">借阅书籍</a-select-option>
-              <a-select-option :value="3">逾期书籍</a-select-option>
-            </a-select>
-          </div>
-        </div>
+        </a-app>
       </a-config-provider>
     </div>
   </div>

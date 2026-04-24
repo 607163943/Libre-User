@@ -43,10 +43,7 @@ const activeTab = ref<TabType>('current')
         </button>
       </div>
     </div>
-    <MyLendTab v-if="activeTab === 'current'" />
-
-    <HistoryTab v-else-if="activeTab === 'history'" />
+    <MyLendTab v-if="activeTab === 'current'" key="current" />
+    <HistoryTab v-else-if="activeTab === 'history'" key="history" />
   </main>
 </template>
-
-<style scoped></style>

@@ -62,8 +62,8 @@ const refreshSearch = () => {
 <template>
   <main class="flex-grow w-full max-w-[1440px] mx-auto px-8 py-6">
     <SearchBar
-      :searchForm="searchForm"
-      :usingSearchForm="usingSearchForm"
+      v-model:searchForm="searchForm"
+      v-model:usingSearchForm="usingSearchForm"
       :total="total"
       :isSearch="isSearch"
       @search="handleSearch"

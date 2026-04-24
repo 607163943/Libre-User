@@ -16,8 +16,3 @@
     border-color: rgb(212 107 86 / var(--tw-border-opacity, 1));
   }
 }
-
-/* 修复滚动条从无到有导致的页面抖动问题 */
-html {
-  scrollbar-gutter: stable; /* 仅在支持的浏览器中预留滚动条位置 */
-}

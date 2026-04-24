@@ -27,7 +27,11 @@ import HeaderLogo from './HeaderLogo.vue'
     </template>
 
     <template #content>
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition name="page-fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </template>
 
     <template #footer>
@@ -36,4 +40,29 @@ import HeaderLogo from './HeaderLogo.vue'
   </Container>
 </template>
 
-<style></style>
+<style>
+.page-fade-enter-active {
+  animation: pageFadeIn 0.35s ease-out;
+}
+.page-fade-leave-active {
+  animation: pageFadeOut 0.2s ease-in;
+}
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pageFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+</style>
