@@ -27,11 +27,9 @@ import HeaderLogo from './HeaderLogo.vue'
     </template>
 
     <template #content>
-      <router-view v-slot="{ Component }">
-        <transition name="page-fade" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
+      <transition name="page-fade" mode="out-in">
+        <router-view />
+      </transition>
     </template>
 
     <template #footer>
