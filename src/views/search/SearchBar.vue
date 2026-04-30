@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SearchForm } from '@/types/search'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 
 const userStore = useUserStore()
 const searchForm = defineModel<SearchForm>('searchForm', {

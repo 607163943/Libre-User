@@ -2,7 +2,7 @@
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons-vue'
 import { logout } from '@/api/login'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 
 const router = useRouter()
 const userStore = useUserStore()

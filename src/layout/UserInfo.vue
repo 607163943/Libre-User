@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { LoginOutlined, DownOutlined } from '@ant-design/icons-vue'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 import { useRouter } from 'vue-router'
 import DownMenu from './DownMenu.vue'
 

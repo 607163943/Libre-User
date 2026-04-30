@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SearchBook } from '@/types/search'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 import { lendBook, returnBook } from '@/api/lend'
 import { message } from 'ant-design-vue'
 

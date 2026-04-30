@@ -42,6 +42,16 @@ const router = createRouter({
           path: 'profile',
           name: 'Profile',
           component: () => import('@/views/profile/index.vue')
+        },
+        {
+          path: 'message',
+          name: 'Message',
+          component: () => import('@/views/message/index.vue')
+        },
+        {
+          path: 'message-detail/:id',
+          name: 'MessageDetail',
+          component: () => import('@/views/message/message-detail.vue')
         }
       ]
     }

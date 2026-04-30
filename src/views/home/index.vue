@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 import { useRouter } from 'vue-router'
 import HotLendBookList from './HotLendBookList.vue'
 import LatestBookList from './LatestBookList.vue'

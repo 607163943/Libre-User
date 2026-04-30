@@ -1,11 +1,11 @@
 import axios, { AxiosError } from 'axios'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 import router from '@/router'
 import { message } from 'ant-design-vue'
 import type { Result } from '@/types/common'
 
 const instance = axios.create({
-  baseURL: '/api/user',
+  baseURL: '/api/app',
   timeout: 10000
 })
 

@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import type { UserProfileInfo, UserInfo } from '@/types/user'
 import { getUserProfile, updateUserProfile } from '@/api/user'
 import { message } from 'ant-design-vue'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/modules/user'
 import type { Rule } from 'ant-design-vue/es/form'
 
 // 主题配置，局部修改输入框和按钮的样式以贴近原设计方案
